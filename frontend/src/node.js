@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+
 import { useLocation } from 'react-router-dom';
 import GraphWrapper from "./components/graph/GraphWrapper";
 import { setupAxios, setupLogger } from "./utils/axiosSetup";
@@ -8,11 +8,6 @@ import { InfoBox } from "./components/graph/NodeInfoBox";
 import Menu from "./components/graph/RightClickNodeMenu";
 import * as THREE from "three";
 import ForceGraph3D from "react-force-graph-3d";
-import { WebGL1Renderer } from "three";
-
-import axios from "axios";
-
-
 
 export default function Node(){
     const location = useLocation();
@@ -26,13 +21,9 @@ export default function Node(){
     const [is3d, setIs3d] = useState(true);
     const [antiPattern, setAntiPattern] = useState(false);
     const [selectedAntiPattern, setSelectedAntiPattern] = useState("none");
-    const [max, setMax] = useState(6);
     const [color, setColor] = useState("dark-default");
     const ref = useRef<HTMLDivElement>(null);
     const [isDark, setIsDark] = useState(true);
-    const [graphName, setGraphName] = useState("test");
-    const [graphTimeline, setGraphTimeline] = useState(null);
-    const [currentInstance, setCurrentInstance] = useState(null);
     const [defNodeColor, setDefNodeColor] = useState(false);
     const [trackNodes, setTrackNodes] = useState([]);
     const [focusNode, setFocusNode] = useState();
@@ -324,7 +315,7 @@ function Legend(microservices) {
   >
     <ul>
       <li>
-        Direct Call: ={'>'}
+        Direct Call: -{'>'}
 
       </li>
       <li>

@@ -33,10 +33,12 @@ This is for the FilterBox on the left side of the screen that filters nodes. The
 This is used for the commit slider at the bottom of the screen that can be used to change which commit is being viewed (which IR file the data is from). The order of the file paths in input.json is the order the commits will be in, so ensure that order is correct. The handleChange method lines 25-40 is where the data is changed - currentInstance is the index of the graphTimeline array (set in App.tsx) that the data should be from. Then, we check if trackChanges is true and set the graphData accordingly (if true, set it to result of compareChanges(prevCommit, currentCommit), and if not, set it to result of getData(currentCommit) (currentCommit is graphTimeline[e.target.value])). 
 
 ### node.js
-Sandeep
+This file displays the page that the main page routes to after the filter button is clicked in the FilterBox. A 3D graph is displayed showing all the controllers, services, repositories, and entities of 
+the microservices that were clicked in the FilterBox as nodes of the graph, and the edges showing how they 
+are connected. The dotted edges represent endpoint calls(calls from a microservice to another microservice through an endpoint), and the straight line edges represent direct calls(calls occuring between the different components in a microservice). The Legend() function displays a hide and show legend, which shows which shapes represent which component(controller, service, repository, or entity) and which color represents which microservice. This file uses the data created from createConnections.js and supplies it to the GraphWrapper class src/components/graph/GraphWrapper to create the graph. 
 
 ### createConnections.js
-Sandeep
+This file's exported function is filternodes(), which takes the JSON file containing the original data and an array which contains the filtered nodes. This is called when the filter button is called, and creates a new object representing the graphData with nodes and links. The nodes are all of the components of the filtered nodes, and the links are the links between the nodes. The file also assigns a color to each microservice and the nodes that are in each microservice, and creates an array mapping each microservice to it's assigned color. The file also stores all the endpoint calls in an array called endpointCalls to keep track of which links need to be dotted. The file returns an object containing the new graphData object, the dictionary mapping microservices to colors, and the array containing endpoint calls. 
 
 ### GraphFunctions.tsx
 This file contains the functionality to set the colors of links and nodes - getColor() is the function for node colors, and getLinkColor() is the function for link colors. We put the functionality for the trackChanges colors after the highlighting colors (like when you hover over a node), so that if you're highlighting something it will still appear. 

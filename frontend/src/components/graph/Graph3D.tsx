@@ -286,7 +286,13 @@ const Graph: React.FC<Props> = ({
                 )
             }
             linkDirectionalParticles={(link: any) => {
-                return highlightLinks.has(link.name) || endpointCalls.includes(link.name) ? 4 : 0;
+                if (highlightLinks.has(link.name)){
+                    return 4;
+                }
+                if (endpointCalls.includes(link.name)){
+                    return 8;
+                }
+                return 0;
             }}
             linkDirectionalParticleWidth={(link) =>
                 getLinkWidth(
